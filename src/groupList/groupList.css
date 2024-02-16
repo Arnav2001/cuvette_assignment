@@ -1,0 +1,81 @@
+.groupMain-div{
+    width: 30vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+.heading-div{
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.name{
+    font-weight: bold;
+}
+.groups-div{
+    height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.group-div{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    margin-bottom:4px ;
+    border-radius: 16px;
+}
+
+.initial-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.name-div{
+    padding-left: 8px;
+}
+.addBtn{
+    color: white;
+    
+}
+.btn-div{
+    cursor: pointer;
+    text-align: center;
+    z-index: 10px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    background-color: #16008B;
+    border-radius: 50%;
+}
+.btnCover-div{
+    
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    align-items: end;
+    justify-content: end;
+}
+
+@media only screen and (max-width: 768px) {
+    .groupMain-div{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+    }
+  }

@@ -1,0 +1,29 @@
+.homeMain-div{
+    height: 100vh;
+    width: 100vw;
+    background-color: #DAE5F5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center-img{
+width: 1200px;
+height: 1200px;
+}
+h1{
+    padding: 0;
+    margin: 0;
+}
+.endLine{
+    margin-left: 8px;
+}
+.bottom-bar{
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    margin: 12px;
+}
+.space-div{
+    flex: 1;
+}
