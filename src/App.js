@@ -13,6 +13,7 @@ function App() {
   const [groups,setGroups]= useState([])
   const [groupUpdate, setGroupUpdate] = useState([])
   const [isMobile, setIsMobile] = useState(false)
+  
   useEffect(()=>{
     const list = JSON.parse(localStorage.getItem('groups'))||[];
     setGroups(list);

@@ -21,15 +21,21 @@ const PopUpMenu = ({setBtnActive, setLengthOfGroup})=> {
         const capitalizedWords = words.map((word) => {
           return word.charAt(0).toUpperCase() + word.slice(1);
         });
+        if(capitalizedWords.length > 1){
+
         const initials = capitalizedWords[0][0]+capitalizedWords[1][0];
         // Join the words back into a string
         const capitalizedString = capitalizedWords.join(' ');
       
         return [initials,capitalizedString];
+        }
+        return [capitalizedWords[0][0], capitalizedWords[0]]
       }
 
       const storeLocally= (name,color) =>{
-        const textList = capitalizeFirstLetter(name);
+        if(name!==''){
+
+            const textList = capitalizeFirstLetter(name);
         const initials = textList[0];
         const newName = textList[1];
 
@@ -44,10 +50,12 @@ const PopUpMenu = ({setBtnActive, setLengthOfGroup})=> {
         setLengthOfGroup(newList.length);
         localStorage.setItem('groups',JSON.stringify(newList));
         setMyList(newList);
-        setBtnActive(false);
+        setBtnActive(false);}
+
       }
 
   return (
+
     <div className='popMain-div'>
     <div className='popBox'>
         <div>
@@ -66,8 +74,9 @@ const PopUpMenu = ({setBtnActive, setLengthOfGroup})=> {
                 <h4>Choose colour</h4>
             </div>
             <div className='colors-div'>
-                {colors.map((color,index)=>(
-                    <div className='color-div' onClick={()=>setIndex(index)} key={index} style={{backgroundColor:color}}/>
+                {colors.map((color,map_index)=>(
+                    <div className='color-div' onClick={()=>setIndex(map_index)} key={map_index} style={{backgroundColor:color,
+                        borderColor: map_index === index ? 'black': 'transparent', border:'Solid 2px'}}/>
                 ))}
             </div>
         </div>
@@ -76,6 +85,7 @@ const PopUpMenu = ({setBtnActive, setLengthOfGroup})=> {
         </div>
     </div>
     </div>
+
   )
 }
 
