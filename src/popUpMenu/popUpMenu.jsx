@@ -54,10 +54,16 @@ const PopUpMenu = ({setBtnActive, setLengthOfGroup})=> {
 
       }
 
+      const clickHandle = (event) => {
+        if (!event.target.closest('#popUpBox')) {
+          setBtnActive(false);
+        }
+      };
+
   return (
 
-    <div className='popMain-div'>
-    <div className='popBox'>
+    <div id ='mainDiv' className='popMain-div' onClick={clickHandle}>
+    <div id='popUpBox' className='popBox'>
         <div>
             <h2>Create New group</h2>
         </div>
@@ -76,7 +82,9 @@ const PopUpMenu = ({setBtnActive, setLengthOfGroup})=> {
             <div className='colors-div'>
                 {colors.map((color,map_index)=>(
                     <div className='color-div' onClick={()=>setIndex(map_index)} key={map_index} style={{backgroundColor:color,
-                        borderColor: map_index === index ? 'black': 'transparent', border:'Solid 2px'}}/>
+                        borderColor: map_index === index ? 'black' : 'transparent',
+                  borderWidth: '2px',
+                  borderStyle: 'solid',}}/>
                 ))}
             </div>
         </div>
