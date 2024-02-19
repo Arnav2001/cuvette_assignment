@@ -15,17 +15,19 @@ function App() {
   const [isMobile, setIsMobile] = useState(false)
   
   useEffect(()=>{
+  
     const list = JSON.parse(localStorage.getItem('groups'))||[];
     setGroups(list);
     setIsMobile(window.innerWidth <= 768);
+    
   },[lengthOfGroup,groupUpdate])
 
   const btnListener = () =>{
     setBtnActive(true);
   }
 
-  return (
-    <>
+  return(
+    <> 
     { isMobile === true ? 
     <>
     { index === -1 ? <>

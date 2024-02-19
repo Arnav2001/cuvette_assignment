@@ -18,6 +18,7 @@ const Chat = ({ groups,index,setGroupUpdate, isMobile, setIndex }) => {
 
 
   const storeLocally = () => {
+    
     const currentDateTime = new Date(); 
   const Time = currentDateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
   const date = currentDateTime.toLocaleDateString('en-US', { day: 'numeric' });

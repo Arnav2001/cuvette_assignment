@@ -37,10 +37,11 @@ const GroupList=({btnListener, setIndex, lengthOfGroup})=> {
           ))
         }
         </div>
-        <div className='btnCover-div'>
+        {/* <div className='btnCover-div'>
+        
+        </div> */}
         <div className='btn-div' onClick={btnListener}>
           <h1 className='addBtn'> + </h1>
-        </div>
         </div>
       </div>
   )
