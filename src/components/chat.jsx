@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import DeviceDetector from "../hooks/deviceDetector";
 import { Discuss } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 const Chat = ({ id }) => {
   const [text, setText] = useState("");
@@ -13,22 +14,27 @@ const Chat = ({ id }) => {
   const [color, setColor] = useState("");
   const isMobile = DeviceDetector();
   const [loading,setLoading] = useState(true);
+
   useEffect(() => {
-    console.log("idddd", id);
+    
     const fetchGroups = async () => {
       try {
+        if(id === undefined){
+          toast.error("Group Not Found");
+          return
+        }
         const response = await fetch(
           `https://cuvette-assignment-backend.onrender.com/group/${id}`
         );
         const data = await response.json();
-        console.log("chattttttt", data);
+        
         setChats(data.chats);
         setInitials(data.initials);
         setName(data.name);
         setColor(data.color);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        
       }
     };
 
@@ -38,6 +44,13 @@ const Chat = ({ id }) => {
 
   const submitChat = async () => {
     try {
+      if(text === ''){
+        toast.error("Please provide some text");
+      }
+      if(id === undefined){
+        toast.error("Group Not Found");
+      }else{
+      
       const body = { content: text };
       const response = await fetch(
         `https://cuvette-assignment-backend.onrender.com/chats/${id}`,
@@ -52,9 +65,9 @@ const Chat = ({ id }) => {
       const data = await response.json();
       setText("");
       setTrigger("submited");
-      console.log("submittt", data.message);
+      }
     } catch (error) {
-      console.log(error);
+      
     }
   };
   return (

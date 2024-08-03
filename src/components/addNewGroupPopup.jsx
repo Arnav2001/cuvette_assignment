@@ -21,8 +21,15 @@ const AddNewGroupPopup = ({ setIsPopUp, onCreateGroup }) => {
     setIsPopUp(false);
   };
   const createNewGroupBtnHandler = async () => {
-    setIsLoading(true);
     try {
+      if(name === ""){
+        toast.error("Please provide group name");
+      }
+      if(selectedIndex === -1){
+        toast.error("Please select profile colour");
+      }
+      else{
+        setIsLoading(true);
       const body = { name, color: colors[selectedIndex] };
       const response = await fetch(
         `https://cuvette-assignment-backend.onrender.com/groups`,
@@ -35,13 +42,12 @@ const AddNewGroupPopup = ({ setIsPopUp, onCreateGroup }) => {
         }
       );
       const data = await response.json();
-      console.log("submittt", data.message);
-    } catch (error) {
-      console.log(error);
-    } finally {
       setIsLoading(false);
       handleCreate();
-      // onCreateGroup("Group created successfully");
+    }
+      
+    } catch (error) {
+        toast.error(error);
     }
   };
   return (
@@ -86,7 +92,7 @@ const AddNewGroupPopup = ({ setIsPopUp, onCreateGroup }) => {
                 }}
                 onClick={() => {
                   setSelectedIndex(index);
-                  console.log(selectedIndex);
+                  
                 }}
               />
             ))}

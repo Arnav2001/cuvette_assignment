@@ -17,7 +17,7 @@ const Drawer = ({setIsPopUp,setId,setIsDrawer,groups}) => {
                 {
                     groups.map((group,index)=>(
                         <div key={index} onClick={()=>{setselectedIndex(index); setIsDrawer(false); setId(group._id)}} className='w-full p-3 items-center flex gap-6 justify-center hover:bg-[#2F2F2F] hover:bg-opacity-[17%] cursor-pointer rounded-xl' style={{backgroundColor:selectedIndex === index?'rgba(47, 47, 47, 0.17)':null,}}>
-                            <div className='w-[70%] flex gap-4'>
+                            <div className='w-[70%] flex items-center gap-4'>
                             <div className='rounded-[50%] h-[3vw] justify-center items-center w-[3vw] text-white p-4 flex ' style={{backgroundColor:group.color}}>
                                {group.initials}
                             </div>
