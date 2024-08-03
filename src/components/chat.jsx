@@ -5,7 +5,7 @@ import DeviceDetector from "../hooks/deviceDetector";
 import { Discuss } from "react-loader-spinner";
 import { toast } from "react-toastify";
 
-const Chat = ({ id }) => {
+const Chat = ({ id, setIsDrawer}) => {
   const [text, setText] = useState("");
   const [chats, setChats] = useState([]);
   const [trigger, setTrigger] = useState("");
@@ -117,7 +117,7 @@ const Chat = ({ id }) => {
           <div className="bg-[#001F8B] w-full h-[10%] p-4 flex items-center gap-4">
             {isMobile === true && (
               <div className="">
-                <FontAwesomeIcon className="text-white" icon={faArrowLeft} />
+                <FontAwesomeIcon onClick={()=>{ setIsDrawer(true);}} className="text-white" icon={faArrowLeft} />
               </div>
             )}
             <div

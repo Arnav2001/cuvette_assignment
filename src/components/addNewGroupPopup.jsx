@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Discuss } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DeviceDetector from "../hooks/deviceDetector";
 
 const AddNewGroupPopup = ({ setIsPopUp, onCreateGroup }) => {
   const colors = [
@@ -15,7 +16,8 @@ const AddNewGroupPopup = ({ setIsPopUp, onCreateGroup }) => {
   const [name, setName] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(false);
-
+  const isMobile = DeviceDetector();
+  
   const handleCreate = () => {
     onCreateGroup("Group created successfully!");
     setIsPopUp(false);
@@ -56,15 +58,15 @@ const AddNewGroupPopup = ({ setIsPopUp, onCreateGroup }) => {
       className="w-full h-full absolute top-0 left-0 bg-[#2F2F2F] bg-opacity-[75%] flex justify-center items-center"
     >
       <div
-        className="bg-white  p-6 z-[1] relative w-[40%] h-[35%] rounded-md flex flex-col gap-5"
+        className={isMobile === true?"bg-white p-4 z-[1] relative w-[80%] text-nowrap rounded-md flex flex-col gap-2":"bg-white  p-6 z-[1] relative w-[40%] h-[35%] rounded-md flex flex-col gap-5"}
         style={{ pointerEvents: "auto" }}
         onClick={(e) => e.stopPropagation()} // Prevent click events from propagating to the background
       >
-        <p className="font-roboto font-[500] text-[1.5rem] leading-46.45px tracking-3.5% w-full h-[20%]">
+        <p className={isMobile === true?"font-roboto font-[500] text-[1.125rem] leading-46.45px tracking-3.5% w-full h-[20%]":"font-roboto font-[500] text-[1.5rem] leading-46.45px tracking-3.5% w-full h-[20%]"}>
           Create New group
         </p>
-        <div className="flex w-full h-[20%] gap-5">
-          <p className="font-roboto font-[500] text-[1.5rem] leading-43.75px tracking-3.5% w-[30%] h-full flex items-center">
+        <div className="flex w-full h-[20%] items-center gap-5">
+          <p className={isMobile === true?"font-roboto font-[500] text-[.875rem] leading-[1.4619rem] tracking-3.5% w-[30%] h-full flex items-center":"font-roboto font-[500] text-[1.5rem] leading-43.75px tracking-3.5% w-[30%] h-full flex items-center"}>
             Group Name
           </p>
           <input
@@ -72,17 +74,18 @@ const AddNewGroupPopup = ({ setIsPopUp, onCreateGroup }) => {
             onChange={(e) => {
               setName(e.target.value);
             }}
-            className=" border-[#CCCCCC] border-2 rounded-[22px] w-[70%] h-full p-4 placeholder:font-roboto placeholder:text-[1.2rem] placeholder:font-[400] placeholder:leading-[36.84px] placeholder:tracking-3.5%"
+            className={isMobile === true ? " border-[#CCCCCC] border-2 rounded-[22px] w-[60%] h-full p-2 placeholder:font-roboto placeholder:text-[.875rem] placeholder:font-[400] placeholder:leading-[36.84px] placeholder:tracking-3.5%"
+            :" border-[#CCCCCC] border-2 rounded-[22px] w-[70%] h-full p-4 placeholder:font-roboto placeholder:text-[1.2rem] placeholder:font-[400] placeholder:leading-[36.84px] placeholder:tracking-3.5%"}
             placeholder="Enter group name"
           />
         </div>
-        <div className="flex gap-10 items-center">
-          <p className="font-roboto font-[500] text-[1.5rem]">Choose colour</p>
-          <div className="flex gap-3">
+        <div className={isMobile === true? "flex items-center gap-2 mb-4":"flex gap-10 items-center"}>
+          <p className={isMobile === true?"font-roboto font-[500] text-[.875rem]":"font-roboto font-[500] text-[1.5rem]"}>Choose colour</p>
+          <div className={isMobile === true?  "flex gap-2":"flex gap-3"}>
             {colors.map((color, index) => (
               <div
                 key={index}
-                className="rounded-[50%] h-[2vw] cursor-pointer w-[2vw]"
+                className={isMobile === true? "rounded-[50%] h-[5vw] cursor-pointer w-[5vw]":"rounded-[50%] h-[2vw] cursor-pointer w-[2vw]"}
                 style={{
                   backgroundColor: color,
                   borderWidth: "1px", // Set a border width
@@ -98,10 +101,11 @@ const AddNewGroupPopup = ({ setIsPopUp, onCreateGroup }) => {
             ))}
           </div>
         </div>
-        <div className="w-full flex justify-end">
+        <div className={isMobile === true?"w-full flex justify-center":"w-full flex justify-end"}>
           <div
             onClick={()=>{createNewGroupBtnHandler();}}
-            className="bg-[#001F8B] pl-10 pr-10 pt-1 pb-1 flex cursor-pointer justify-center items-center rounded-[11px] text-white font-roboto font-[400] text-[1rem] leading-32.04px tracking-3.5%"
+            className={isMobile === true ?"bg-[#001F8B] pl-10 pr-10 pt-1 pb-1 w-[70%] flex cursor-pointer justify-center items-center rounded-[11px] text-white font-roboto font-[400] text-[1rem] leading-32.04px tracking-3.5%"
+            : "bg-[#001F8B] pl-10 pr-10 pt-1 pb-1 flex cursor-pointer justify-center items-center rounded-[11px] text-white font-roboto font-[400] text-[1rem] leading-32.04px tracking-3.5%"}
           >
             Create
           </div>

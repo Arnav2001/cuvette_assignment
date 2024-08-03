@@ -15,6 +15,7 @@ function App() {
   const [groups, setGroups] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+
   useEffect(() => {
     const fetchGroups = async () => {
       try {
@@ -22,10 +23,10 @@ function App() {
           "https://cuvette-assignment-backend.onrender.com/groups"
         );
         const data = await response.json();
-        console.log(data);
+        
         setGroups(data);
       } catch (error) {
-        console.log(error);
+        
       }finally {
         setIsLoading(false); 
       }
@@ -55,7 +56,7 @@ function App() {
       </div>
     ) : isMobile ? (
       <>
-        {isDrawer ? (
+        {isDrawer === true ? (
           <div className="w-full h-full">
             <Drawer
               groups={groups}
@@ -66,7 +67,7 @@ function App() {
           </div>
         ) : (
           <div className="w-full h-full">
-            <Chat id={id} />
+            <Chat id={id} setIsDrawer={setIsDrawer} />
           </div>
         )}
       </>
@@ -82,7 +83,7 @@ function App() {
         </div>
 
         <div className="w-[70%] h-full">
-          <Chat id={id} />
+          <Chat id={id} setIsDrawer={setIsDrawer} />
         </div>
       </>
     )}
